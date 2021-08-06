@@ -13,6 +13,16 @@ const Tabs = (topics) => {
   //   <div class="tab">technology</div>
   // </div>
   //
+
+  //Instantiating Topic Container
+  const topicDiv = document.createElement('div');
+  topicDiv.classList.add('topics');
+
+  //Iterate through topics and instantiate elements for each into topic container
+  for(let i = 0; i < topics.length; i++) {
+    
+  }
+
 }
 
 const tabsAppender = (selector) => {
