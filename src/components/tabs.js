@@ -20,8 +20,13 @@ const Tabs = (topics) => {
 
   //Iterate through topics and instantiate elements for each into topic container
   for(let i = 0; i < topics.length; i++) {
-    
+    const topicTab = document.createElement('div');
+    topicTab.classList.add('tab');
+    topicTab.textContent = `${topics[i]}`;
+    topicDiv.appendChild(topicTab);
   }
+
+  return topicDiv;
 
 }
 
