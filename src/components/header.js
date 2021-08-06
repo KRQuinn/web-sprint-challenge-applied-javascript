@@ -1,7 +1,4 @@
-// Instantiation Callback
-function Instantiate(type){
-  return document.createElement(type);
-}
+import Instantiate from "./Instantiate";
 
 const Header = (title, date, temp) => {
   // TASK 1

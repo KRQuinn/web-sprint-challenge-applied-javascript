@@ -1,3 +1,6 @@
+import Instantiate from "./Instantiate";
+
+
 const Card = (article) => {
   // TASK 5
   // ---------------------
@@ -17,6 +20,21 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
+
+  //Element Instantiation
+  const card = Instantiate('div');
+  const headline = Instantiate('div')
+  const author = Instantiate('div')
+  const img = Instantiate('div')
+  const authorPhoto = Instantiate('img')
+  const authorName = Instantiate('span')
+
+  //Hierarchy Instantiation
+  card.appendChild(headline);
+  card.appendChild(author);
+  author.appendChild(img);
+  img.appendChild(authorPhoto);
+  author.appendChild(authorName);
 }
 
 const cardAppender = (selector) => {
