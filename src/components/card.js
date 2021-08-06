@@ -35,6 +35,24 @@ const Card = (article) => {
   author.appendChild(img);
   img.appendChild(authorPhoto);
   author.appendChild(authorName);
+
+  //Setting Class
+  card.classList.add('card');
+  headline.classList.add('headline');
+  author.classList.add('author');
+  img.classList.add('img-container');
+
+  //Setting Attributes
+  headline.textContext = article.headline;
+  authorPhoto.src = article.authorPhoto;
+  authorName.textContext = `By ${article.authorName}`
+
+  //Console Logging Event Listener
+  card.addEventListener('click', function(){
+    console.log(article.headline);
+  })
+
+  return card;
 }
 
 const cardAppender = (selector) => {
