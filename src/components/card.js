@@ -1,3 +1,4 @@
+import axios from "axios";
 import Instantiate from "./Instantiate";
 
 
@@ -23,11 +24,17 @@ const Card = (article) => {
 
   //Element Instantiation
   const card = Instantiate('div');
-  const headline = Instantiate('div')
-  const author = Instantiate('div')
-  const img = Instantiate('div')
-  const authorPhoto = Instantiate('img')
-  const authorName = Instantiate('span')
+  const headline = Instantiate('div');
+  const author = Instantiate('div');
+  const img = Instantiate('div');
+  const authorPhoto = Instantiate('img');
+  const authorName = Instantiate('span');
+
+  //Setting Class
+  card.classList.add('card');
+  headline.classList.add('headline');
+  author.classList.add('author');
+  img.classList.add('img-container');
 
   //Hierarchy Instantiation
   card.appendChild(headline);
@@ -36,16 +43,10 @@ const Card = (article) => {
   img.appendChild(authorPhoto);
   author.appendChild(authorName);
 
-  //Setting Class
-  card.classList.add('card');
-  headline.classList.add('headline');
-  author.classList.add('author');
-  img.classList.add('img-container');
-
   //Setting Attributes
   headline.textContext = article.headline;
   authorPhoto.src = article.authorPhoto;
-  authorName.textContext = `By ${article.authorName}`
+  authorName.textContext = `By ${article.authorName}`;
 
   //Console Logging Event Listener
   card.addEventListener('click', function(){
@@ -64,6 +65,45 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
-}
+
+  //Append Callback
+  const cards = document.querySelector(selector);
+
+  function Append(type) {
+    return cards.appendChild(type);
+  }
+
+  //Pulling data from API to iterate over each item and pass the data to the
+  //'Card' function, then calling back to 'Append' to return appended cards.
+  axios.get(`http://localhost:5000/api/articles`)
+  .then((res) => {
+    res.data.articles.javascript.forEach(item => {
+      const cardZero = Card(item)
+      Append(cardZero)
+    })
+    res.data.articles.bootstrap.forEach(item => {
+      const cardOne = Card(item)
+      Append(cardOne)
+    })
+    res.data.articles.technology.forEach(item => {
+      const cardTwo = Card(item)
+      Append(cardTwo)
+    })
+    res.data.articles.jquery.forEach(item => {
+      const cardThree = Card(item)
+      Append(cardThree)
+    })
+    res.data.articles.node.forEach(item => {
+      const cardFour = Card(item)
+      Append(cardFour)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+  })
+  .finally(() => {
+    console.log('done')
+  })
+};
 
 export { Card, cardAppender }
