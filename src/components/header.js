@@ -1,3 +1,8 @@
+// Instantiation Callback
+function Instantiate(type){
+  return document.createElement(type);
+}
+
 const Header = (title, date, temp) => {
   // TASK 1
   // ---------------------
@@ -11,6 +16,30 @@ const Header = (title, date, temp) => {
   //    <span class="temp">{ temp }</span>
   //  </div>
   //
+
+  //Element instantiation
+  const headerDiv = Instantiate('div'); //Header container
+
+  const dateArg = Instantiate('span');
+  const titleArg = Instantiate('h1');
+  const tempArg = Instantiate('span');
+
+  //Hierarchy Instantiation
+  headerDiv.appendChild(dateArg);
+  headerDiv.appendChild(titleArg);
+  headerDiv.appendChild(tempArg);
+
+  //Setting Class 
+  headerDiv.classList.add('header');
+  dateArg.classList.add('date');
+  tempArg.classList.add('temp');
+
+  //Setting Attributes
+  titleArg.textContent = `${title}`;
+  dateArg.textContent = `${date}`;
+  tempArg.textContent = `${temp}`;
+
+  return headerDiv;
 }
 
 const headerAppender = (selector) => {
